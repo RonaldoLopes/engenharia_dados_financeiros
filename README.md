@@ -1,198 +1,73 @@
 # Sistema de Engenharia de Dados Financeiros
 
+<!-- ABOUT THE PROJECT -->
 Este projeto é um sistema escalável de engenharia de dados para processamento e análise de dados financeiros em tempo real, utilizando Kubernetes, Airflow, Spark, Databricks e Docker.
 
-## Arquitetura
-![Arquitetura do Sistema](docs/arquitetura.png)
-
-## Componentes Principais
-
-- **Kubernetes**: Orquestração de containers.
-- **Airflow**: Orquestração de pipelines ETL.
-- **Spark**: Processamento de dados em lote e streaming.
-- **Databricks**: Armazenamento e análise colaborativa.
-- **Docker**: Contenerização dos serviços.
-
-## Como Configurar
-
-### Requisitos
-- Docker e Docker Compose.
-- Kubernetes (Minikube ou provedor em nuvem).
-- Conta no Databricks.
-
-# Projeto de Engenharia de Dados para Processamento de Dados Financeiros em Tempo Real
-
-## Definição do Escopo do Projeto
-
-### Objetivo
-
-Criar um sistema de engenharia de dados para processamento de dados financeiros em tempo real, incluindo:
-
-- Ingestão de dados em streaming de diversas fontes.
-- ETL complexo para transformações financeiras.
-- Armazenamento e análise de dados no Databricks.
-- Orquestração das pipelines com o Airflow.
-- Implementação escalável com Kubernetes.
-- Contenerização de serviços com Docker.
-
-### Componentes do Sistema
-
-#### Fontes de Dados
-- APIs financeiras
-- Mensagens Kafka
-- Arquivos CSV
-- Bancos relacionais
-
-#### Ferramentas
-- **Kubernetes** para orquestração de containers.
-- **Airflow** para gestão de pipelines.
-- **Apache Spark** para processamento de dados em lote e streaming.
-- **Databricks** para armazenamento e análise colaborativa de dados.
-- **MongoDB** para armazenamento de metadados.
-- **Docker** para criar imagens de serviços e simplificar o deploy.
-
-# Arquitetura Geral do Sistema de Processamento de Dados Financeiros
-
-## Ingestão de Dados
-
-Dados financeiros em tempo real serão capturados via:
-
-- Streams Kafka.
-- APIs REST usando conectores em Python.
-- Uploads de arquivos CSV para um bucket no S3 ou Azure Data Lake.
-
-## Processamento de Dados
-
-- Streaming com Spark Structured Streaming.
-- ETL tradicional para agregações, cálculos financeiros e validação de dados.
-
-## Armazenamento
-
-- Dados transformados serão armazenados como tabelas Delta no Databricks.
-- Dados intermediários em um data lake.
-
-## Orquestração
-
-- Pipelines programadas e monitoradas pelo Apache Airflow.
-- Integração de tarefas como extração, transformação e cargas incrementais.
-
-## Visualização e Report
-
-- Integração com ferramentas BI como Power BI ou Tableau para dashboards financeiros.
-# Setup do Ambiente e Desenvolvimento da Pipeline de Dados
-
-## Passo 1: Configuração do Docker
-
-Criar Dockerfiles para:
-
-- Airflow astro dev init
-- Spark (driver e executores)
-- APIs e conectores personalizados
-
-Usar Docker Compose para definir os serviços:
-
-- Configurar redes para comunicação entre containers
-- Definir volumes persistentes para dados temporários
-
-## Passo 2: Configuração do Kubernetes
-
-### Instalação
-
-- Usar Minikube para ambiente local ou EKS/GKE/AKS para nuvem
-- Configurar nodes e namespaces dedicados para diferentes serviços
-
-### Desenvolvimento
-
-Criar YAML para:
-
-- Deployment do Airflow
-- Deployments para jobs Spark (driver + executores)
-- Ingress Controller para APIs
-
-## Passo 3: Deploy do Apache Airflow
-
-- Usar Helm Charts para instalar o Airflow no Kubernetes
-
-### Configurar DAGs:
-
-- Criar DAGs modulares para pipelines ETL e streaming
-- Definir conexões no Airflow, como Kafka, APIs e Databricks
-
-## Passo 4: Configuração do Databricks
-
-- Criar um cluster no Databricks com auto-scaling
-
-### Configurar conectores:
-
-- Spark Structured Streaming
-- Conector Delta Lake para gravação incremental
-
-## Passo 5: Configuração do Spark
-
-- Ajustar configurações do Spark para processamento em Kubernetes
-- Configurar Spark Operator no Kubernetes para jobs em lote e streaming
-
-### Criar pipelines Spark:
-
-- Pipeline de streaming para consumo Kafka
-- Jobs ETL para cálculos financeiros
-
-## Passo 6: Desenvolvimento da Pipeline de Dados
-
-### Pipeline 1: Ingestão de Dados em Streaming
-
-- Configurar consumo do Kafka no Spark
-- Validar mensagens com esquemas Avro ou JSON Schema
-- Persistir os dados no Databricks como tabelas bronze
-
-### Pipeline 2: ETL Complexo
-
-Criar transformações no Spark para:
-
-- Cálculos financeiros: amortização, juros, saldo
-- Agregações por cliente e contrato
-
-Salvar os dados como tabelas prata e ouro no Databricks
-
-### Pipeline 3: Carga Incremental
-
-- Criar lógica de Merge no Delta Lake para atualização de registros
-- Implementar auditoria para mudanças nos dados
-
-## Passo 7: Orquestração com Airflow
-
-- Criar DAGs para cada pipeline
-
-### Configurar sensores para monitorar:
-
-- Novos arquivos no bucket S3
-- Tópicos Kafka
-
-### Adicionar tasks para:
-
-- Extração de APIs
-- Execução de jobs Spark
-
-## Passo 8: Monitoramento e Escalabilidade
-
-### Monitoramento:
-
-- Configurar Prometheus e Grafana para monitorar jobs Spark e Airflow
-- Monitorar KPIs financeiros nos dashboards BI
-
-### Escalabilidade:
-
-- Configurar auto-scaling no cluster Kubernetes
-- Usar clusters Databricks de alto desempenho
-
-## Passo 9: Testes e Validação
-
-- Criar testes unitários para cada módulo Spark
-- Validar consistência dos dados no Delta Lake
-- Realizar testes de carga para pipelines de streaming
-
-## Passo 10: Entrega e Manutenção
-
-- Documentar cada etapa do processo
-- Criar rotinas de backup para dados críticos
-- Configurar processos de CI/CD para DAGs, jobs Spark e imagens Docker
+# Feito Com
+
+Abaixo segue o que foi utilizado na criação deste projeto:
+
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/) - Ferramenta de código aberto que permite criar um ambiente de teste do Kubernetes em sua máquina local. Com o Minikube, é possível criar e implantar aplicativos em um cluster Kubernetes em sua máquina local.
+- [Helm](https://helm.sh/) - Ferramenta de gerenciamento de pacotes de código aberto para o Kubernetes. O Helm permite empacotar aplicativos Kubernetes em um formato padrão chamado de gráfico, que inclui todos os recursos necessários para implantar o aplicativo, incluindo configurações e dependências.
+- [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) - Ferramenta declarativa que usa a abordagem GitOps para implantar aplicações no Kubernetes. O Argo CD é gratuito, tem código aberto, é um projeto incubado pela CNCF, e possui uma interface web de visualização e gerenciamento dos recursos, mas também pode ser configurado via linha de comando.
+- [Spark](https://spark.apache.org/) - O Spark é um framework de processamento de dados distribuído e de código aberto, que permite executar processamento de dados em larga escala, incluindo processamento em batch, streaming, SQL, machine learning e processamento de gráficos. Ele foi projetado para ser executado em clusters de computadores e fornece uma interface de programação fácil de usar para desenvolvedores;
+- [Airflow](https://airflow.apache.org/) - O Airflow é uma plataforma de orquestração de fluxo de trabalho de dados de código aberto que permite criar, agendar e monitorar fluxos de trabalho complexos de processamento de dados. Ele usa uma linguagem de definição de fluxo de trabalho baseada em Python e possui uma ampla gama de conectores pré-construídos para trabalhar com diferentes sistemas de armazenamento de dados, bancos de dados e ferramentas de processamento de dados;
+- [Reflector](https://github.com/emberstack/kubernetes-reflector) - O Reflector é uma ferramenta de sincronização de estado de código aberto que permite sincronizar recursos Kubernetes em diferentes clusters ou namespaces. Ele usa a abordagem de controlador de reconciliação para monitorar e atualizar automaticamente o estado dos recursos Kubernetes com base em um estado desejado especificado;
+- [Minio](https://min.io/) - O Minio é um sistema de armazenamento de objetos de código aberto e de alta performance, compatível com a API Amazon S3. Ele é projetado para ser executado em clusters distribuídos e escaláveis e fornece recursos avançados de segurança e gerenciamento de dados;
+- [Postgres](https://www.postgresql.org/) - O Postgres é um sistema de gerenciamento de banco de dados relacional de código aberto, conhecido por sua confiabilidade, escalabilidade e recursos avançados de segurança. Ele é compatível com SQL e é usado em uma ampla gama de aplicativos, desde pequenos sites até grandes empresas e organizações governamentais.
+
+## Pré-requisitos
+Nenhum
+
+### instalação do cluster Kubernates
+Cluster Kubernetes local para executar a aplicação e o pipeline de dados. Cluster de Kubernetes **[minikube](https://minikube.sigs.k8s.io/docs/)**. [Instalação do Minikube](https://minikube.sigs.k8s.io/docs/start/).
+
+Também usaremos o **[helm](https://helm.sh/)** para nos ajudar a instalar algumas aplicações. [Siga este guia de instalação para instalar o Helm](https://helm.sh/docs/intro/install/).
+
+Após instalar esses pré-requisitos, é hora de iniciar o nosso cluster Minikube. Para que tudo ocorra bem, é aconselhável usar um cluster de no mínimo 8GB de memória e 2 CPUs. Execute o seguinte comando no terminal:
+```
+minikube start --memory=8000 --cpus=2
+minikube start --driver=docker
+```
+Vou usar o kubernetes-dashboard para isso utilizarei a configução via yaml
+```
+minikube dashboard
+```
+
+### Ferramentas
+
+Será necessário instalar algumas aplicações que serão responsaveis por manter e gerenciar nosso pipeline de dados.
+
+Estando conectado em um cluster Kubernetes, execute os seguintes comandos para criar todos os namespaces necessarios:
+
+```sh
+kubectl create namespace orchestrator
+kubectl create namespace database
+kubectl create namespace ingestion
+kubectl create namespace processing
+kubectl create namespace datastore
+kubectl create namespace deepstorage
+kubectl create namespace cicd
+kubectl create namespace app
+kubectl create namespace management
+kubectl create namespace misc
+```
+
+Spark
+```sh
+helm repo add spark https://charts.bitnami.com/bitnami
+helm repo update
+helm install my-spark-release spark/spark
+kubectl get pods
+```
+execute o comando  kubectl get services para UI
+```
+kubectl port-forward service/my-spark-release-master-svc 8080:80
+```
+
+Airflow
+```sh
+helm repo add apache-airflow https://airflow.apache.org/
+helm repo update
+helm install airflow apache-airflow/airflow --namespace airflow --create-namespace
+```
