@@ -26,8 +26,7 @@ Também usaremos o **[helm](https://helm.sh/)** para nos ajudar a instalar algum
 
 Após instalar esses pré-requisitos, é hora de iniciar o nosso cluster Minikube. Para que tudo ocorra bem, é aconselhável usar um cluster de no mínimo 8GB de memória e 2 CPUs. Execute o seguinte comando no terminal:
 ```
-minikube start --memory=8000 --cpus=2
-minikube start --driver=docker
+minikube start --driver=docker --memory=8000 --cpus=2
 ```
 Vou usar o kubernetes-dashboard para isso utilizarei a configução via yaml
 ```
@@ -61,9 +60,12 @@ helm install my-spark-release spark/spark
 kubectl get pods
 ```
 execute o comando  kubectl get services para UI
-```
+```sh
+kubectl get services
 kubectl port-forward service/my-spark-release-master-svc 8080:80
 ```
+![Spark](assets/spark.png)
+
 
 Airflow
 ```sh
